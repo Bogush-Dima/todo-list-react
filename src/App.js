@@ -21,19 +21,16 @@ const TodoList = () => {
     //   completed: false,
     //   title: "Task-1",
     // },
-
     // {
     //   id: 2,
     //   completed: false,
     //   title: "Task-2",
     // },
-
     // {
     //   id: 3,
     //   completed: true,
     //   title: "Task-3",
     // },
-
     // {
     //   id: 4,
     //   completed: false,
@@ -41,22 +38,18 @@ const TodoList = () => {
     // },
   ]);
 
-  const [inputValue, setInputValue] = useState('');
+  const [inputValue, setInputValue] = useState("");
 
   const chengeInputValue = (event) => {
     setInputValue(event.target.value);
   };
 
-  const addNewTask = () => {
-    console.log(
-      inputValue
-    );
-    setTodos([
-      { id: 10, title: inputValue, completed: false },
-    ]);
+  const addNewTask = (event) => {
+    console.log(event.target[0].value);
+    event.preventDefault()
+    setTodos([...todos, { id: 10, title: inputValue, completed: false }]);
+    event.target[0].value = ''
   };
-
-  console.log(todos);
 
   return (
     <>
@@ -66,15 +59,15 @@ const TodoList = () => {
           <TodoItem todo={el} key={el.id} />
         ))}
       </section>
-      <form className="add-task">
+      <form className="add-task" onSubmit={addNewTask}>
         <input
           className="new-task"
           type="text"
           placeholder="Add Task"
-          value={inputValue}
+          // value={inputValue}
           onChange={chengeInputValue}
         />
-        <button className="button add-button" onClick={addNewTask}>
+        <button className="button add-button" type="submit">
           add
         </button>
       </form>
