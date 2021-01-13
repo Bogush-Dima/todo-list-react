@@ -1,0 +1,17 @@
+.item {
+  width: max-content;
+  margin: 0 auto 20px;
+}
+
+.title {
+
+}
+
+.check {
+
+}
+
+.done {
+  text-decoration: line-through;
+  opacity: .2;
+}
