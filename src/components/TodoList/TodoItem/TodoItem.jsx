@@ -1,6 +1,6 @@
 import styles from './TodoItem.module.css'
 
-const TodoItem = ({ todo: { id, title, completed }, toggleTask }) => {
+const TodoItem = ({ todo: { id, title, completed }, toggleTask, deleteTask }) => {
   return (
     <div className={styles.item}>
       <input
@@ -13,6 +13,7 @@ const TodoItem = ({ todo: { id, title, completed }, toggleTask }) => {
       <span className={`${styles.title} ${completed ? styles.done : ""}`}>
         {title}
       </span>
+      <button className={styles.deleteBtn} onClick={() => deleteTask(id)}>&times;</button>
     </div>
   );
 };

@@ -1,6 +1,9 @@
 .item {
-  width: max-content;
+  max-width: 200px;
   margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .title {
@@ -14,4 +17,21 @@
 .done {
   text-decoration: line-through;
   opacity: .2;
+}
+
+.deleteBtn {
+  color: white;
+  background: rgb(168, 3, 3);
+  border: none;
+  border: 2px solid transparent;
+  border-radius: 5px;
+  outline: none;
+  transition: .3s;
+}
+
+.deleteBtn:hover {
+  cursor: pointer;
+  background: transparent;
+  color: black;
+  border-color: black;
 }

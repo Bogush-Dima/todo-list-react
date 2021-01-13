@@ -1,24 +1,21 @@
 import { useState } from "react";
-import styles from './Form.module.css'
+import styles from "./AddNewTaskForm.module.css";
 
-const Form = ({ todos, setTodos }) => {
+const Form = ({ addNewTask }) => {
   const [inputValue, setInputValue] = useState("");
 
   const chengeInputValue = (event) => {
     setInputValue(event.target.value);
   };
 
-  const addNewTask = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    setTodos([
-      ...todos,
-      { id: todos.length, title: inputValue, completed: false },
-    ]);
+    addNewTask(inputValue);
     setInputValue("");
   };
 
   return (
-    <form className={styles.form} onSubmit={addNewTask}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       <input
         className="new-task"
         type="text"

@@ -1,7 +1,6 @@
 import { useState } from "react";
-import styles from './TodoList.module.css'
-import Form from "../Form/Form";
-import Todos from "./Todos/Todos";
+import TodoItem from "./TodoItem/TodoItem";
+import AddNewTaskForm from "./AddNewTaskForm/AddNewTaskForm";
 
 const TodoList = () => {
   const [todos, setTodos] = useState([
@@ -27,11 +26,42 @@ const TodoList = () => {
     },
   ]);
 
+  const toggleTask = (id) => {
+    setTodos(
+      todos.map((todo) => {
+        if (todo.id === id) {
+          todo.completed = !todo.completed;
+        }
+        return todo;
+      })
+    );
+  };
+
+  const addNewTask = (inputValue) => {
+    setTodos([
+      ...todos,
+      { id: todos.length, title: inputValue, completed: false },
+    ]);
+  };
+
+  const deleteTask = (id) => {
+    setTodos(todos.filter((todo) => todo.id !== id));
+  };
+
   return (
     <>
-      <h1 className={styles.title}>TODO</h1>
-      <Todos todos={todos} setTodos={setTodos} />
-      <Form todos={todos} setTodos={setTodos} />
+      <section className="todos">
+        {todos.map((el) => (
+          <TodoItem
+            todos={todos}
+            todo={el}
+            key={el.id}
+            toggleTask={toggleTask}
+            deleteTask={deleteTask}
+          />
+        ))}
+      </section>
+      <AddNewTaskForm addNewTask={addNewTask} />
     </>
   );
 };
