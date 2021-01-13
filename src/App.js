@@ -1,41 +1,43 @@
 import { useState } from "react";
 import "./App.css";
 
-const TodoItem = ({ todo: { title, completed } }) => {
+const TodoItem = ({todo, todo: { id, title, completed }, toggleTask }) => {
   return (
-    <div className="todo-item">
+    <div className='todo-item'>
       <input
-        className="todo-item__check"
+        className='todo-item__check'
         type="checkbox"
-        // checked={completed}
+        checked={completed}
+        id={id}
+        onChange={() => toggleTask(id)}
       />
-      <span className="todo-item__title">{title}</span>
+      <span className={`todo-item__title${completed ? ' done' : ''}`}>{title}</span>
     </div>
   );
 };
 
 const TodoList = () => {
   const [todos, setTodos] = useState([
-    // {
-    //   id: 1,
-    //   completed: false,
-    //   title: "Task-1",
-    // },
-    // {
-    //   id: 2,
-    //   completed: false,
-    //   title: "Task-2",
-    // },
-    // {
-    //   id: 3,
-    //   completed: true,
-    //   title: "Task-3",
-    // },
-    // {
-    //   id: 4,
-    //   completed: false,
-    //   title: "Task-4",
-    // },
+    {
+      id: 0,
+      completed: false,
+      title: "Task-1",
+    },
+    {
+      id: 1,
+      completed: false,
+      title: "Task-2",
+    },
+    {
+      id: 2,
+      completed: false,
+      title: "Task-3",
+    },
+    {
+      id: 3,
+      completed: false,
+      title: "Task-4",
+    },
   ]);
 
   const [inputValue, setInputValue] = useState("");
@@ -45,10 +47,23 @@ const TodoList = () => {
   };
 
   const addNewTask = (event) => {
-    console.log(event.target[0].value);
-    event.preventDefault()
-    setTodos([...todos, { id: 10, title: inputValue, completed: false }]);
-    event.target[0].value = ''
+    event.preventDefault();
+    setTodos([
+      ...todos,
+      { id: todos.length, title: inputValue, completed: false },
+    ]);
+    setInputValue("");
+  };
+
+  const toggleTask = (id) => {
+    setTodos(
+      todos.map((todo) => {
+        if (todo.id === id) {
+          todo.completed = !todo.completed;
+        }
+        return todo;
+      })
+    );
   };
 
   return (
@@ -56,7 +71,12 @@ const TodoList = () => {
       <h1 className="title">TODO</h1>
       <section className="todos">
         {todos.map((el) => (
-          <TodoItem todo={el} key={el.id} />
+          <TodoItem
+            todos={todos}
+            todo={el}
+            key={el.id}
+            toggleTask={toggleTask}
+          />
         ))}
       </section>
       <form className="add-task" onSubmit={addNewTask}>
@@ -64,10 +84,14 @@ const TodoList = () => {
           className="new-task"
           type="text"
           placeholder="Add Task"
-          // value={inputValue}
+          value={inputValue}
           onChange={chengeInputValue}
         />
-        <button className="button add-button" type="submit">
+        <button
+          className="button add-button"
+          type="submit"
+          disabled={!inputValue}
+        >
           add
         </button>
       </form>
