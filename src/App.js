@@ -45,7 +45,7 @@ const App = () => {
           <SideBar />
           <Route exact path='/'>
           <div className={styles.hello}>
-            <p className={styles.helloText}>HELLO USER</p>
+            <p className={styles.helloText}>TROLOLOLOLO</p>
           </div>
           </Route>
           <Route path="/work">
