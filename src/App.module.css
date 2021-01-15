@@ -1,0 +1,12 @@
+.mainWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+}
+
+.wrapper {
+  display: grid;
+  min-height: calc(100vh - 60px);
+  grid-template-columns: 2fr 10fr;
+}

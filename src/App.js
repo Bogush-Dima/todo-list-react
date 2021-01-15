@@ -1,14 +1,19 @@
-import "./App.css";
-import TodoList from './components/TodoList/TodoList'
-// import AddNewTaskForm from './components/TodoList/AddNewTaskForm/AddNewTaskForm'
+import styles from "./App.module.css";
+import Footer from "./components/Footer/Footer";
+import Header from "./components/Header/Header";
+import SideBar from "./components/SideBar/SideBar";
+import TodoList from "./components/TodoList/TodoList";
 
 const App = () => {
   return (
-    <>
-      <h1 className="title">TODO</h1>
-      <TodoList />
-      {/* <AddNewTaskForm /> */}
-    </>
+    <div className={styles.mainWrapper}>
+      <Header />
+      <div className={styles.wrapper}>
+        <SideBar />
+        <TodoList />
+      </div>
+      <Footer />
+    </div>
   );
 };
 

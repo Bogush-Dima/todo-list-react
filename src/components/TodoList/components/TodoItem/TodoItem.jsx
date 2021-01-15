@@ -1,6 +1,7 @@
 import styles from './TodoItem.module.css'
+import clsx from 'clsx'
 
-const TodoItem = ({ todo: { id, title, completed }, toggleTask, deleteTask }) => {
+const TodoItem = ({ todo: {id, title, completed}, deleteTask, toggleTask }) => {
   return (
     <div className={styles.item}>
       <input
@@ -10,7 +11,7 @@ const TodoItem = ({ todo: { id, title, completed }, toggleTask, deleteTask }) =>
         id={id}
         onChange={() => toggleTask(id)}
       />
-      <span className={`${styles.title} ${completed ? styles.done : ""}`}>
+      <span className={clsx(styles.title, {[styles.done]: completed})}>
         {title}
       </span>
       <button className={styles.deleteBtn} onClick={() => deleteTask(id)}>&times;</button>
