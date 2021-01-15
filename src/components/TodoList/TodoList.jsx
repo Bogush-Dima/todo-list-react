@@ -4,35 +4,15 @@ import AddNewTaskForm from "./components/AddNewTaskForm/AddNewTaskForm";
 import SerchForm from "./components/SerchForm/SerchForm";
 import TodosItems from "./components/TodosItems/TodosItems";
 
-const TodoList = () => {
-  const [todos, setTodos] = useState([
-    {
-      id: 0,
-      completed: false,
-      title: "adsafsdaff",
-    },
-    {
-      id: 1,
-      completed: false,
-      title: "asdgfdsfgdf",
-    },
-    {
-      id: 2,
-      completed: false,
-      title: "dfghfdh",
-    },
-    {
-      id: 3,
-      completed: false,
-      title: "fghgfjhfgj",
-    },
-  ]);
-
+const TodoList = ({ todos, setTodos, allTodos }) => {
   const [serchValue, setSerchValue] = useState("");
 
+  const [localTodos, setLocalTodos] = useState(todos)
+
   const toggleTask = (id) => {
-    setTodos(
-      todos.map((todo) => {
+    console.log(allTodos);
+    setLocalTodos(
+      localTodos.map((todo) => {
         if (todo.id === id) {
           todo.completed = !todo.completed;
         }
@@ -42,22 +22,31 @@ const TodoList = () => {
   };
 
   const addNewTask = (inputValue) => {
-    setTodos([
-      ...todos,
-      { id: todos.length, title: inputValue, completed: false },
+    setLocalTodos([
+      ...localTodos,
+      { id: allTodos.length, title: inputValue, completed: false, category: localTodos[0].category },
     ]);
+    setTodos([
+      ...allTodos,
+      { id: allTodos.length, title: inputValue, completed: false, category: localTodos[0].category },
+    ])
   };
 
   const deleteTask = (id) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
-  };
+    setLocalTodos(
+      localTodos.filter((todo) => todo.id !== id)
+    ) 
+    setTodos(
+      allTodos.filter((todo) => todo.id !== id)
+    )
+  } 
 
-  const getNotCompletedTasks = () => todos.filter((todo) => !todo.completed);
+  const getNotCompletedTasks = () => localTodos.filter((todo) => !todo.completed);
 
-  const getCompletedTasks = () => todos.filter((todo) => todo.completed);
+  const getCompletedTasks = () => localTodos.filter((todo) => todo.completed);
 
-  const getFilteredTasksByName = (todos, serchValue) =>
-    todos.filter((el) =>
+  const getFilteredTasksByName = (localTodos, serchValue) =>
+  localTodos.filter((el) =>
       el.title.toLowerCase().includes(serchValue.toLowerCase())
     );
 
