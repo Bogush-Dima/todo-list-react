@@ -1,6 +1,6 @@
 # Getting Started with Create React App
 
-DEPLOY: https://todo-list-react-hf08vn3ca.vercel.app/
+DEPLOY: https://todo-list-react-pink.vercel.app/
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
