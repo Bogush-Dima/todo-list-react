@@ -10,14 +10,3 @@
   min-height: calc(100vh - 60px);
   grid-template-columns: 2fr 10fr;
 }
-
-.hello {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.helloText {
-  font-size: 40px;
-  font-weight: bold;
-}

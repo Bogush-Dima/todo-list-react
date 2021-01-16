@@ -1,13 +1,16 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import NotificationSystem from "react-notification-system";
 import styles from "./TodoList.module.css";
 import AddNewTaskForm from "./components/AddNewTaskForm/AddNewTaskForm";
 import SerchForm from "./components/SerchForm/SerchForm";
 import TodosItems from "./components/TodosItems/TodosItems";
 
 const TodoList = ({ todos, setTodos, allTodos }) => {
+  const notificationSystem = React.useRef();
+
   const [serchValue, setSerchValue] = useState("");
 
-  const [localTodos, setLocalTodos] = useState(todos)
+  const [localTodos, setLocalTodos] = useState(todos);
 
   const toggleTask = (id) => {
     console.log(allTodos);
@@ -21,33 +24,53 @@ const TodoList = ({ todos, setTodos, allTodos }) => {
     );
   };
 
+  const addNotification = () => {
+    // event.preventDefault();
+    const notification = notificationSystem.current;
+    notification.addNotification({
+      message: "You have this task here",
+      level: "success",
+    });
+  };
+
   const addNewTask = (inputValue) => {
-    const path = window.location.pathname
-    setLocalTodos([
-      ...localTodos,
-      { id: (allTodos.length + 1), title: inputValue, completed: false, category: path },
-    ]);
-    setTodos([
-      ...allTodos,
-      { id: allTodos.length, title: inputValue, completed: false, category: path },
-    ])
+    const path = window.location.pathname;
+    if (localTodos.find((todo) => todo.title === inputValue)) {
+      addNotification();
+    } else {
+      setLocalTodos([
+        ...localTodos,
+        {
+          id: allTodos.length + 1,
+          title: inputValue,
+          completed: false,
+          category: path,
+        },
+      ]);
+      setTodos([
+        ...allTodos,
+        {
+          id: allTodos.length,
+          title: inputValue,
+          completed: false,
+          category: path,
+        },
+      ]);
+    }
   };
 
   const deleteTask = (id) => {
-    setLocalTodos(
-      localTodos.filter((todo) => todo.id !== id)
-    ) 
-    setTodos(
-      allTodos.filter((todo) => todo.id !== id)
-    )
-  } 
+    setLocalTodos(localTodos.filter((todo) => todo.id !== id));
+    setTodos(allTodos.filter((todo) => todo.id !== id));
+  };
 
-  const getNotCompletedTasks = () => localTodos.filter((todo) => !todo.completed);
+  const getNotCompletedTasks = () =>
+    localTodos.filter((todo) => !todo.completed);
 
   const getCompletedTasks = () => localTodos.filter((todo) => todo.completed);
 
   const getFilteredTasksByName = (localTodos, serchValue) =>
-  localTodos.filter((el) =>
+    localTodos.filter((el) =>
       el.title.toLowerCase().includes(serchValue.toLowerCase())
     );
 
@@ -72,6 +95,7 @@ const TodoList = ({ todos, setTodos, allTodos }) => {
           />
         </section>
         <AddNewTaskForm addNewTask={addNewTask} />
+        <NotificationSystem ref={notificationSystem} />
       </div>
     </div>
   );
