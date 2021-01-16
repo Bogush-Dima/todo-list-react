@@ -22,13 +22,14 @@ const TodoList = ({ todos, setTodos, allTodos }) => {
   };
 
   const addNewTask = (inputValue) => {
+    const path = window.location.pathname
     setLocalTodos([
       ...localTodos,
-      { id: allTodos.length, title: inputValue, completed: false, category: localTodos[0].category },
+      { id: (allTodos.length + 1), title: inputValue, completed: false, category: path },
     ]);
     setTodos([
       ...allTodos,
-      { id: allTodos.length, title: inputValue, completed: false, category: localTodos[0].category },
+      { id: allTodos.length, title: inputValue, completed: false, category: path },
     ])
   };
 
