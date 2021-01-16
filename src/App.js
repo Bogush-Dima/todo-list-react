@@ -8,8 +8,14 @@ import SideBar from "./components/SideBar/SideBar";
 import TodoList from "./components/TodoList/TodoList";
 
 const App = () => {
-  const [todos, setTodos] = useState(
-    JSON.parse(localStorage.getItem("todos"))
+  const storageTodos = JSON.parse(localStorage.getItem("todos"))
+  const [todos, setTodos] = useState(storageTodos || [])
+    // if(storageTodos.isArray()) {
+    //   return storageTodos
+    // } else {
+    //   return []
+    // }
+    // JSON.parse(localStorage.getItem("todos"))
     //   [
     //   {
     //     id: 0,
@@ -36,7 +42,7 @@ const App = () => {
     //     title: "Private-2",
     //   },
     // ]
-  );
+  // );
 
   localStorage.setItem("todos", JSON.stringify(todos));
 
