@@ -5,7 +5,7 @@ import AddNewTaskForm from "./components/AddNewTaskForm/AddNewTaskForm";
 import SerchForm from "./components/SerchForm/SerchForm";
 import TodosItems from "./components/TodosItems/TodosItems";
 
-const TodoList = ({ todos, setTodos, allTodos }) => {
+const TodoList = ({ title, todos, setTodos, allTodos }) => {
   const notificationSystem = React.useRef();
 
   const [serchValue, setSerchValue] = useState("");
@@ -30,14 +30,14 @@ const TodoList = ({ todos, setTodos, allTodos }) => {
   };
 
   const addNewTask = (inputValue) => {
-    const path = window.location.pathname;
+    const path = (window.location.pathname).slice(1)
     if (todos.find((todo) => todo.title === inputValue)) {
       addNotification();
     } else {
       setTodos([
         ...allTodos,
         {
-          id: todos.length + 1,
+          id: allTodos.length + 1,
           title: inputValue,
           completed: false,
           category: path,
@@ -64,7 +64,7 @@ const TodoList = ({ todos, setTodos, allTodos }) => {
     <div className={styles.wrapper}>
       <div>
         <SerchForm serchValue={serchValue} setSerchValue={setSerchValue} />
-        <h1 className={styles.title}>TODO</h1>
+        <h1 className={styles.title}>{title}</h1>
         <section className={styles.todos}>
           <TodosItems
             items={getFilteredTasksByName(getNotCompletedTasks(), serchValue)}

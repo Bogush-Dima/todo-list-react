@@ -8,32 +8,37 @@ import SideBar from "./components/SideBar/SideBar";
 import TodoList from "./components/TodoList/TodoList";
 
 const App = () => {
-  const [todos, setTodos] = useState([
-    {
-      id: 0,
-      completed: false,
-      category: "work",
-      title: "Work-1",
-    },
-    {
-      id: 1,
-      completed: false,
-      category: "work",
-      title: "Work-2",
-    },
-    {
-      id: 2,
-      completed: false,
-      category: "private",
-      title: "Private-1",
-    },
-    {
-      id: 3,
-      completed: false,
-      category: "private",
-      title: "Private-2",
-    },
-  ]);
+  const [todos, setTodos] = useState(
+    JSON.parse(localStorage.getItem("todos"))
+    //   [
+    //   {
+    //     id: 0,
+    //     completed: false,
+    //     category: "work",
+    //     title: "Work-1",
+    //   },
+    //   {
+    //     id: 1,
+    //     completed: false,
+    //     category: "work",
+    //     title: "Work-2",
+    //   },
+    //   {
+    //     id: 2,
+    //     completed: false,
+    //     category: "private",
+    //     title: "Private-1",
+    //   },
+    //   {
+    //     id: 3,
+    //     completed: false,
+    //     category: "private",
+    //     title: "Private-2",
+    //   },
+    // ]
+  );
+
+  localStorage.setItem("todos", JSON.stringify(todos));
 
   const getTodosByCategory = (category) =>
     todos.filter((todo) => todo.category === category);
@@ -49,6 +54,7 @@ const App = () => {
           </Route>
           <Route path="/work">
             <TodoList
+              title="WORK"
               todos={getTodosByCategory("work")}
               setTodos={setTodos}
               allTodos={todos}
@@ -56,6 +62,7 @@ const App = () => {
           </Route>
           <Route path="/private">
             <TodoList
+              title="PRIVATE"
               todos={getTodosByCategory("private")}
               setTodos={setTodos}
               allTodos={todos}
