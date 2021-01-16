@@ -10,12 +10,9 @@ const TodoList = ({ todos, setTodos, allTodos }) => {
 
   const [serchValue, setSerchValue] = useState("");
 
-  const [localTodos, setLocalTodos] = useState(todos);
-
   const toggleTask = (id) => {
-    console.log(allTodos);
-    setLocalTodos(
-      localTodos.map((todo) => {
+    setTodos(
+      allTodos.map((todo) => {
         if (todo.id === id) {
           todo.completed = !todo.completed;
         }
@@ -25,7 +22,6 @@ const TodoList = ({ todos, setTodos, allTodos }) => {
   };
 
   const addNotification = () => {
-    // event.preventDefault();
     const notification = notificationSystem.current;
     notification.addNotification({
       message: "You have this task here",
@@ -35,22 +31,13 @@ const TodoList = ({ todos, setTodos, allTodos }) => {
 
   const addNewTask = (inputValue) => {
     const path = window.location.pathname;
-    if (localTodos.find((todo) => todo.title === inputValue)) {
+    if (todos.find((todo) => todo.title === inputValue)) {
       addNotification();
     } else {
-      setLocalTodos([
-        ...localTodos,
-        {
-          id: allTodos.length + 1,
-          title: inputValue,
-          completed: false,
-          category: path,
-        },
-      ]);
       setTodos([
         ...allTodos,
         {
-          id: allTodos.length,
+          id: todos.length + 1,
           title: inputValue,
           completed: false,
           category: path,
@@ -60,17 +47,16 @@ const TodoList = ({ todos, setTodos, allTodos }) => {
   };
 
   const deleteTask = (id) => {
-    setLocalTodos(localTodos.filter((todo) => todo.id !== id));
     setTodos(allTodos.filter((todo) => todo.id !== id));
   };
 
   const getNotCompletedTasks = () =>
-    localTodos.filter((todo) => !todo.completed);
+  todos.filter((todo) => !todo.completed);
 
-  const getCompletedTasks = () => localTodos.filter((todo) => todo.completed);
+  const getCompletedTasks = () => todos.filter((todo) => todo.completed);
 
-  const getFilteredTasksByName = (localTodos, serchValue) =>
-    localTodos.filter((el) =>
+  const getFilteredTasksByName = (todos, serchValue) =>
+  todos.filter((el) =>
       el.title.toLowerCase().includes(serchValue.toLowerCase())
     );
 

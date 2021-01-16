@@ -9,30 +9,30 @@ import TodoList from "./components/TodoList/TodoList";
 
 const App = () => {
   const [todos, setTodos] = useState([
-    // {
-    //   id: 0,
-    //   completed: false,
-    //   category: "/work",
-    //   title: "Work-1",
-    // },
-    // {
-    //   id: 1,
-    //   completed: false,
-    //   category: "/work",
-    //   title: "Work-2",
-    // },
-    // {
-    //   id: 2,
-    //   completed: false,
-    //   category: "/private",
-    //   title: "Private-1",
-    // },
-    // {
-    //   id: 3,
-    //   completed: false,
-    //   category: "/private",
-    //   title: "Private-2",
-    // },
+    {
+      id: 0,
+      completed: false,
+      category: "work",
+      title: "Work-1",
+    },
+    {
+      id: 1,
+      completed: false,
+      category: "work",
+      title: "Work-2",
+    },
+    {
+      id: 2,
+      completed: false,
+      category: "private",
+      title: "Private-1",
+    },
+    {
+      id: 3,
+      completed: false,
+      category: "private",
+      title: "Private-2",
+    },
   ]);
 
   const getTodosByCategory = (category) =>
@@ -49,14 +49,14 @@ const App = () => {
           </Route>
           <Route path="/work">
             <TodoList
-              todos={getTodosByCategory("/work")}
+              todos={getTodosByCategory("work")}
               setTodos={setTodos}
               allTodos={todos}
             />
           </Route>
           <Route path="/private">
             <TodoList
-              todos={getTodosByCategory("/private")}
+              todos={getTodosByCategory("private")}
               setTodos={setTodos}
               allTodos={todos}
             />
