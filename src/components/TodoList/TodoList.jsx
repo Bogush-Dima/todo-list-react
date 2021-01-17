@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import NotificationSystem from "react-notification-system";
 import styles from "./TodoList.module.css";
-import AddNewTaskForm from "./components/AddNewTaskForm/AddNewTaskForm";
+import clsx from 'clsx'
+import AddNewTaskForm from "./components/AddNewTaskForm/AddNewTaskForm.jsx";
 import SerchForm from "./components/SerchForm/SerchForm";
 import TodosItems from "./components/TodosItems/TodosItems";
 
@@ -25,19 +26,19 @@ const TodoList = ({ title, todos, setTodos, allTodos }) => {
     const notification = notificationSystem.current;
     notification.addNotification({
       message: "You have this task here",
-      level: "success",
+      level: "warning",
     });
   };
 
   const addNewTask = (inputValue) => {
-    const path = (window.location.pathname).slice(1)
+    const path = window.location.pathname.slice(1);
     if (todos.find((todo) => todo.title === inputValue)) {
       addNotification();
     } else {
       setTodos([
         ...allTodos,
         {
-          id: allTodos.length + 1,
+          id: Math.random(),
           title: inputValue,
           completed: false,
           category: path,
@@ -50,13 +51,12 @@ const TodoList = ({ title, todos, setTodos, allTodos }) => {
     setTodos(allTodos.filter((todo) => todo.id !== id));
   };
 
-  const getNotCompletedTasks = () =>
-  todos.filter((todo) => !todo.completed);
+  const getNotCompletedTasks = () => todos.filter((todo) => !todo.completed);
 
   const getCompletedTasks = () => todos.filter((todo) => todo.completed);
 
   const getFilteredTasksByName = (todos, serchValue) =>
-  todos.filter((el) =>
+    todos.filter((el) =>
       el.title.toLowerCase().includes(serchValue.toLowerCase())
     );
 
@@ -72,16 +72,16 @@ const TodoList = ({ title, todos, setTodos, allTodos }) => {
             deleteTask={deleteTask}
           />
         </section>
+        <AddNewTaskForm addNewTask={addNewTask} />
+        <NotificationSystem ref={notificationSystem} />
         <section className={styles.completedTasks}>
-          <h2>COMPLETED TASKS</h2>
+          <h2 className={clsx(styles.completedTitle, {[styles.completedTitileTrue]: getCompletedTasks().length !== 0})}>COMPLETED TASKS</h2>
           <TodosItems
             items={getFilteredTasksByName(getCompletedTasks(), serchValue)}
             toggleTask={toggleTask}
             deleteTask={deleteTask}
           />
         </section>
-        <AddNewTaskForm addNewTask={addNewTask} />
-        <NotificationSystem ref={notificationSystem} />
       </div>
     </div>
   );

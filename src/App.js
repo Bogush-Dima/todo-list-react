@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import styles from "./App.module.css";
-import Footer from "./components/Footer/Footer";
-import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
 import SideBar from "./components/SideBar/SideBar";
 import TodoList from "./components/TodoList/TodoList";
@@ -21,7 +19,6 @@ const App = () => {
   return (
     <BrowserRouter>
       <div className={styles.mainWrapper}>
-        <Header />
         <div className={styles.wrapper}>
           <SideBar />
           <Route exact path="/">
@@ -44,7 +41,6 @@ const App = () => {
             />
           </Route>
         </div>
-        <Footer />
       </div>
     </BrowserRouter>
   );

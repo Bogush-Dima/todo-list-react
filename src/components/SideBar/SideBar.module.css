@@ -1,5 +1,5 @@
 .navBar {
-  background: chartreuse;
+  background: #1d1d1d;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -8,17 +8,24 @@
 .list {
   list-style: none;
   padding: 0;
+  width: 90%;
+  text-align: center;
 }
 
 .listItem {
-  margin-bottom: 10px;
+  padding: 5px 0;
+  display: block;
+  border-radius: 5px;
+  transition: .2s;
+}
+
+.listItem:hover {
+  background: gray;
 }
 
 .link {
+  user-select: none;
+  display: block;
   text-decoration: none;
-  color: rgba(0, 0, 0, 0.63);
-}
-
-.link:hover {
-  color: rgb(0, 0, 0);
+  color: rgba(255, 255, 255, 0.568);
 }

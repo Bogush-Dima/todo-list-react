@@ -17,7 +17,7 @@ const Form = ({ addNewTask }) => {
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <input
-        className="new-task"
+        className={styles.newTask}
         type="text"
         placeholder="Add Task"
         value={inputValue}

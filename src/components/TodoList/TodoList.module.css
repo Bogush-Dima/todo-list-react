@@ -1,7 +1,5 @@
 .wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: #252525;
 }
 
 .title {
@@ -9,6 +7,14 @@
 }
 
 .completedTasks {
-  width: max-content;
   margin: 0 auto;
+}
+
+.completedTitle {
+  display: none;
+  text-align: center;
+}
+
+.completedTitileTrue {
+  display: block;
 }
