@@ -1,6 +1,6 @@
 # TodoList
 
-[Open in browser](todo-list-react-2.vercel.app)
+[Open in browser](https://todo-list-react-2.vercel.app/)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
