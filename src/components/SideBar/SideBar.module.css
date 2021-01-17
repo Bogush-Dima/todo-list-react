@@ -1,8 +1,10 @@
 .navBar {
   background: #1d1d1d;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  padding-top: 100px;
+  min-width: 100px;
 }
 
 .list {
@@ -13,10 +15,11 @@
 }
 
 .listItem {
-  padding: 5px 0;
+  padding: 10px 0;
   display: block;
   border-radius: 5px;
   transition: .2s;
+  margin-bottom: 5px;
 }
 
 .listItem:hover {

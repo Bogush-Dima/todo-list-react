@@ -35,6 +35,10 @@ button:disabled {
   opacity: .2;
 }
 
+button:disabled:hover {
+  cursor: unset;
+}
+
 .mainWrapper {
   display: flex;
   flex-direction: column;

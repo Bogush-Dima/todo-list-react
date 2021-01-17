@@ -66,4 +66,6 @@
 .deleteBtn:hover {
   opacity: 1;
   cursor: pointer;
+  background: rgb(168, 3, 3);
+  color: white;
 }
