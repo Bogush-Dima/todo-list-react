@@ -25,15 +25,16 @@ const TodoList = ({ title, todos, setTodos, allTodos }) => {
   const addNotification = () => {
     const notification = notificationSystem.current;
     notification.addNotification({
-      message: "You have this task here",
+      message: "You are already have task with the same name",
       level: "warning",
     });
   };
 
-  const addNewTask = (inputValue) => {
+  const addNewTask = (inputValue, setInputValue) => {
     const path = window.location.pathname.slice(1);
     if (todos.find((todo) => todo.title === inputValue)) {
       addNotification();
+      setInputValue(inputValue)
     } else {
       setTodos([
         ...allTodos,
@@ -44,6 +45,7 @@ const TodoList = ({ title, todos, setTodos, allTodos }) => {
           category: path,
         },
       ]);
+      setInputValue('')
     }
   };
 

@@ -52,3 +52,10 @@ button:disabled:hover {
   min-height: 100vh;
   grid-template-columns: 2fr 10fr;
 }
+
+@media(max-width: 600px) {
+  .wrapper {
+    grid-template-columns: none;
+    grid-template-rows: max-content;
+  }
+}

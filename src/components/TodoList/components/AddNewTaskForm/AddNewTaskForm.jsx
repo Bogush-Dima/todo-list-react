@@ -10,14 +10,14 @@ const Form = ({ addNewTask }) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    addNewTask(inputValue);
-    setInputValue("");
+    addNewTask(inputValue, setInputValue);
   };
 
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <input
         className={styles.newTask}
+        spellCheck='false'
         type="text"
         placeholder="Add Task"
         value={inputValue}

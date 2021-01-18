@@ -5,6 +5,7 @@ const SerchForm = ({serchValue, setSerchValue}) => {
     <form className={styles.wrapper}>
       <input
         className={styles.text}
+        spellCheck='false'
         type="text"
         placeholder="Serch"
         value={serchValue}
