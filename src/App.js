@@ -1,14 +1,14 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
+import { useSelector } from "react-redux";
 import styles from "App.module.css";
 import Main from "components/Main/Main";
 import SideBar from "components/SideBar/SideBar";
 import TodoList from "components/TodoList/TodoList";
 
 const App = () => {
-  const storageTodos = JSON.parse(localStorage.getItem("todos"));
-  const [todos, setTodos] = useState(storageTodos || []);
-
+  const todos = useSelector(store => store)
+  
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
   }, [todos]);
@@ -30,9 +30,7 @@ const App = () => {
               return (
                 <TodoList
                   title="WORK"
-                  todos={getTodosByCategory("work")}
-                  setTodos={setTodos}
-                  allTodos={todos}
+                  todos={getTodosByCategory('work')}
                 />
               );
             }}
@@ -43,9 +41,7 @@ const App = () => {
               return (
                 <TodoList
                   title="PRIVATE"
-                  todos={getTodosByCategory("private")}
-                  setTodos={setTodos}
-                  allTodos={todos}
+                  todos={getTodosByCategory('private')}
                 />
               );
             }}
