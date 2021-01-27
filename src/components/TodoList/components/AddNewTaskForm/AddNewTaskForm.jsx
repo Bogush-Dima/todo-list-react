@@ -3,14 +3,14 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import NotificationSystem from "react-notification-system";
 import styles from "./AddNewTaskForm.module.css";
-import { addTodo } from "redux/actions";
+import { addTodo } from "store/actions";
 
 const AddNewTaskForm = () => {
   const [inputValue, setInputValue] = useState("");
   const dispatch = useDispatch();
-  const store = useSelector((store) => store);
+  const todos = useSelector((store) => store.todos);
 
-  const chengeInputValue = (event) => {
+  const changeInputValue = (event) => {
     setInputValue(event.target.value);
   };
 
@@ -27,7 +27,7 @@ const AddNewTaskForm = () => {
   const handleSubmit = (event) => {
     const path = window.location.pathname;
     event.preventDefault();
-    if (store.find((todo) => todo.title === inputValue && path.includes(todo.category))) {
+    if (todos.find((todo) => todo.title === inputValue && path.includes(todo.category))) {
       addNotification();
       setInputValue(inputValue);
     } else {
@@ -45,7 +45,7 @@ const AddNewTaskForm = () => {
         type="text"
         placeholder="Add Task"
         value={inputValue}
-        onChange={chengeInputValue}
+        onChange={changeInputValue}
       />
       <button
         className="button add-button"

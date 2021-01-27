@@ -7,7 +7,7 @@ import SideBar from "components/SideBar/SideBar";
 import TodoList from "components/TodoList/TodoList";
 
 const App = () => {
-  const todos = useSelector(store => store)
+  const todos = useSelector(store => store.todos)
   
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));

@@ -1,4 +1,4 @@
-const { ADD_TODO, TOGGLE_TASK, DELETE_TASK } = require("./types");
+const { ADD_TODO, TOGGLE_TASK, DELETE_TASK } = require("./constants");
 
 const addTodo = (value, path) => {
   return {

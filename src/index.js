@@ -1,16 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { applyMiddleware, createStore } from "redux";
+import React from "react";
+import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import { composeWithDevTools } from 'redux-devtools-extension';
-import thunk from 'redux-thunk';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { rootReducer } from 'redux/rootReducer';
-
-const storageTodos = JSON.parse(localStorage.getItem("todos")) || []
-const store = createStore(rootReducer, storageTodos, composeWithDevTools(applyMiddleware(thunk)))
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { store } from "store";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -18,7 +12,7 @@ ReactDOM.render(
       <App />
     </Provider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 reportWebVitals();

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import clsx from "clsx";
 import styles from "./TodoList.module.css";
-import AddNewTaskForm from "./components/AddNewTaskForm/AddNewTaskForm.jsx";
-import SerchForm from "./components/SerchForm/SerchForm";
-import TodosItems from "./components/TodosItems/TodosItems";
+import AddNewTaskForm from "components/TodoList/components/AddNewTaskForm/AddNewTaskForm.jsx";
+import SerchForm from "components/TodoList/components/SerchForm/SerchForm";
+import TodosItems from "components/TodoList/components/TodosItems/TodosItems";
 
 const TodoList = ({ title, todos }) => {
   const [serchValue, setSerchValue] = useState("");

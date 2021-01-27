@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import clsx from "clsx";
 import styles from "./TodoItem.module.css";
-import { toggleTask, deleteTask } from "redux/actions";
+import { toggleTask, deleteTask } from "store/actions";
 
 const TodoItem = ({ todo: { id, title, completed } }) => {
   const dispatch = useDispatch()

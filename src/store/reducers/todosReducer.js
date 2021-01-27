@@ -1,6 +1,8 @@
-import { ADD_TODO, DELETE_TASK, TOGGLE_TASK } from "./types";
+import { ADD_TODO, DELETE_TASK, TOGGLE_TASK } from "store/constants";
 
-const rootReducer = (state, action) => {
+const initialState = JSON.parse(localStorage.getItem("todos")) || []
+
+const todosReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TODO:
       return [
@@ -26,4 +28,4 @@ const rootReducer = (state, action) => {
   }
 };
 
-export { rootReducer };
+export { todosReducer };
