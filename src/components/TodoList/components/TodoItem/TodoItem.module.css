@@ -1,5 +1,5 @@
 .item {
-  max-width: 200px;
+  max-width: 65vw;
   margin: 0 auto 20px;
   display: flex;
   align-items: center;
@@ -11,7 +11,7 @@
 }
 
 .text {
-  max-width: 150px;
+  max-width: 45vw;
   overflow: hidden;
 }
 
